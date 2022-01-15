@@ -1,0 +1,12 @@
+#include<stdio.h>
+int main()
+{
+	int A=0;
+	printf("我帅不(1/0)>:");
+	scanf("%d",&A);
+	if(A==1)
+		printf("帅\n");
+	else
+	    printf("不帅\n");	
+	return 0;
+}
