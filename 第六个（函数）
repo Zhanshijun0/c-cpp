@@ -1,0 +1,20 @@
+#include<stdio.h>
+int Add(int x,int y)
+{
+	int z=x+y;
+	return z;
+}
+int main()
+{
+	int A=10;
+	int B=20;
+	int C=0;
+	int PC=0;
+	int a=100;
+	int b=200;
+	C=Add(A,B);
+	PC=Add(a,b);
+	printf("C=%d\n",C);
+	printf("PC=%d\n",PC);
+	return 0;
+}
