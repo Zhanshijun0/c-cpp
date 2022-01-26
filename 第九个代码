@@ -1,0 +1,25 @@
+#include<stdio.h>
+void test()
+{
+	static int a=1;
+	//static 修饰局部变量
+	//局部变量的生命周期变长
+	//static 修饰全局变量 
+	//改变了变量的作用域 - 让静态的全局变量只能在自己所在的源文件内部使用
+	//出了源文件就没法在继续使用了
+	//static修饰函数 
+	//a 是一个静态的局部变量 
+	a++;
+	printf("%d\n",a);//2 3 4 5 6 
+}
+int main()
+{
+	//extern  声明外部符号 
+	int i=0;
+	while(i<5)
+	{
+		test();
+		i++;
+	}
+	return 0;
+}
