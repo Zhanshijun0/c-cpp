@@ -1,0 +1,6 @@
+#include<stdio.h>
+int main()
+{
+	printf("HELL0 2O21 NEUQ-ACM SUMMER CAMP!！");
+	return 0; 
+} 
