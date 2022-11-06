@@ -1,0 +1,10 @@
+#include<stdio.h>
+#define Pai 3.14
+int main()
+{
+	float R,V;
+	scanf("%f",&R);
+	V=4.0/3*Pai*R*R*R;
+	printf("V=%.2f\n",V);
+	return 0;
+}
