@@ -1,0 +1,9 @@
+#include<stdio.h>
+int main()
+{
+	int a;
+	float b=1.5f;
+	char c='c';
+	scanf("a=%d,%f:%c",&a,&b,&c);
+	printf("a=%d,b=%.2f,c=%c\n",a,b,c);
+}
