@@ -1,0 +1,14 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	char c;
+	c=getchar();
+	if(c>='a' && c<='z')
+	{
+		c-=32;
+		putchar(c);
+	}
+	else
+		cout<<"输入错误"<<endl;
+}
