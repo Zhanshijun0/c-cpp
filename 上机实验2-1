@@ -1,0 +1,15 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	float fz=1,x=0;
+	int i,n;
+	cout<<"n=";
+	cin>>n;
+	for(i=1;i<=n;i++)
+	{
+		x=x+fz/i;
+		fz=-fz;
+	}
+	cout<<"x="<<x<<endl;
+}
