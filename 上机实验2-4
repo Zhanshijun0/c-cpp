@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+int sum(int n)
+{
+	int i=1,x=0;
+	while(i<=n)
+	{
+		x=x+(2*i-1);
+		i=i+1;
+	}
+	return x;
+}
+int main()
+{
+	int n,m=0;
+	cin>>n;
+	m=sum(n);
+	cout<<m<<endl;
+	return 0;
+}
