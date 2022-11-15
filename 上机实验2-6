@@ -1,0 +1,41 @@
+#include<iostream>
+#include<string>
+using namespace std;
+float avg(int sum)
+{
+	return sum/10.0;
+}
+int maxmin(int a[],string b)
+{
+	int i,j,t;
+	for(i=0;i<=9;i++)
+	{
+		for(j=0;j<=i-1;j++)
+		{
+			if(a[i]>=a[j])
+				{t=a[i];a[i]=a[j];a[j]=t;}	
+		}
+	}
+	if(b=="max")
+		return a[0];
+	if(b=="min")
+		return a[9];
+};
+int main()
+{
+	int a[10];
+	int i,sum=0,Max,Min;
+	float Avg;
+	for(i=0;i<=9;i++)
+	{
+		scanf("%d",&a[i]);
+		sum=sum+a[i];
+	}
+	Avg=avg(sum);
+	Max=maxmin(a,"max");
+	Min=maxmin(a,"min");
+	cout<<"最大值为"<<Max<<endl;
+	cout<<"最小值为"<<Min<<endl;
+	cout<<"平均值为"<<Avg<<endl;
+	return 0;
+}
