@@ -1,0 +1,15 @@
+#include <stdio.h>
+void swap(float &x,float &y)
+{
+	x=x+y;
+	y=x-y;
+	x-=y;	
+}
+int main()
+{
+	float a,b;
+	printf("input a,b:");
+	scanf("%f%f",&a,&b);
+	swap(a,b);
+	printf("%f,%f",a,b);
+}
