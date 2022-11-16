@@ -1,0 +1,28 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+class Point{
+	private:
+		float x,y;
+	public:
+		Point(float a=0,float b=0)
+		{  	cout<<"Point"<<endl;
+			x=a;  y=b;
+		}
+		void setXY(float a,float b)
+		{  x=a;  y=b;  }
+		void show()
+		{  cout<<"("<<x<<","<<y<<")"<<endl;  }
+		float dist()
+		{  return sqrt(x*x+y*y);  }
+		~Point()
+		{  cout<<"~Point"<<endl;  }
+};
+int main()
+{	Point p,q(10),r(1,2);
+	p.show(); 
+	q.show();
+	r.show();
+	p.setXY(3,4);
+	cout<<"distance="<<p.dist()<<endl;
+}
