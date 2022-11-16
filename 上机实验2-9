@@ -1,0 +1,39 @@
+#include<iostream>
+using namespace std;
+int f(int n)
+{
+	int i,s=1;
+	for(i=1;i<=n;i++)
+	{
+		s=s*i;
+	}
+	return s;
+}
+float fib(int n)
+{
+	if(n==0)
+	{
+		return 0;
+	}
+	else if(n==1||n==2)
+	{
+		return 1;
+	}
+	else
+	{
+		return fib(n-1)+fib(n-2);
+	}
+}
+int main()
+{
+	int k;
+	cin>>k;
+	float s=0,b;
+	for(int i=1;i<=k;i++)
+	{
+		b=fib(i)/f(i);
+		s=s+b;
+	}
+	cout<<s<<endl;
+	return 0;
+}
