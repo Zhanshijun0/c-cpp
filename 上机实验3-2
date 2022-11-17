@@ -1,0 +1,46 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class Student{
+ 	private:
+		string Sname;
+		int Sage; 
+	public:
+		static int Snum;
+		Student()
+ 		{Snum++;}
+ 		Student(string a,int b):Sname(a),Sage(b)
+		{Snum++;}
+ 		static void showNum();
+ 		void setName(string);
+ 		void setAge(int);
+ 		void show();
+ 		~Student()
+		{  	Snum--;  }
+	};
+	int Student::Snum=0;
+	void Student::showNum()
+	{  cout<<"总人数: "<<Snum<<endl;  }
+	void Student::setName(string a){  Sname=a;  }
+	void Student::setAge(int b){  Sage=b;  }
+	void Student::show()
+	{  cout<<Sname<<","<<Sage<<endl;  }
+	int main()
+	{
+		Student s1("Tom",10);
+		{
+			Student s2;
+			string sn;
+			int n;
+			cout<<"Name:";
+        	getline(cin,sn);
+			s2.setName(sn);
+			cout<<"Age:";
+			cin>>n;
+			s2.setAge(n);
+			s2.show();
+			Student::showNum();
+		}
+	s1.show();
+	s1.showNum(); 
+	}
