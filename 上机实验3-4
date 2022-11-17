@@ -1,0 +1,48 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class Date{
+	private:
+		int Year,Month,Day;//存年、月、日
+	public:
+		Date(){    }
+		Date(const Date& obj)//拷贝构造函数
+		{
+			Year=obj.Year+1;
+			Month=obj.Month+1;
+			Day=obj.Day+1;
+		}
+		void printDate()
+		{//输出格式示例：2022-10-1
+			
+			cout<<Year<<"-"<<Month<<"-"<<Day<<endl;
+		}
+		void setYear(int);
+		void setMonth(int);
+		void setDay(int);
+		void setYMD(int a,int b,int c)//依次给年月日赋值
+		{Year=a;
+		Month=b;
+		Day=c;}
+};
+//编写若干行代码
+void Date::setYear(int a)
+{Year=a;}
+void Date::setMonth(int b)
+{Month=b;}
+void Date::setDay(int c)
+{Day=c;}
+int main()
+{
+	Date d;
+	d.setYear(2022);
+	d.setMonth(10); 
+	d.setDay(1);
+	d.printDate();
+	Date  t(d);
+	t.printDate();
+	t.setYMD(2000,1,10);
+	t.printDate();
+	d=t;
+	d.printDate();
+}
