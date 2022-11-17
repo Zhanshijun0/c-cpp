@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+class book{
+	private:
+		int Num; //订购数量
+		float Price; //每本单价
+	public:
+		book(int n)
+		{
+			if(n<0)
+				Num=Price=0;
+			else
+			{ Num=n; //编写若干行代码
+			  Price=Num*10;
+}	
+		}
+		float total();
+};
+//实现total()
+float book::total()
+{
+	return Num*Price;
+}
+int main()
+{
+	book b[5]={1,2,3,4,5};
+	book *pb=b;
+	int i=4;
+	for(pb=&b[4];pb>=b;pb--)
+	{
+	cout<<i<<":"<<pb->total()<<endl;//根据输出格式写若干行代码
+		i--;
+	}
+}
