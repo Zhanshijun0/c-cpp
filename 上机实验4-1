@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+class Base{
+	public:
+		Base()
+		{  cout<<"Base()"<<endl;  }
+		~Base()
+		{  cout<<"~Base()"<<endl;  }
+};
+class Derived:public Base
+{
+	public:
+		Derived()
+		{  cout<<"Derived()"<<endl;  }
+		void show()
+		{  cout<<"Derived::show()"<<endl;  }		
+		~Derived()
+		{  cout<<"~Base()"<<endl;  }			
+};
+int main()
+{
+	Derived d; //自动调用构造函数，先父后子：父构造函数—子构造函数
+	d.show();	
+} //程序结束时，对象销亡系统自动调用析构函数（对称）
