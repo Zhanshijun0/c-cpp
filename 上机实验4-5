@@ -1,0 +1,31 @@
+#include <iostream>
+const float Pai=3.14;  //Pai为常量
+using namespace std;
+class Shape{//有纯虚函数是抽象类，只能定义该类指针
+	protected:
+		float x,y;
+	public:
+		Shape(float a,float b):x(a),y(b){  }
+		virtual void area()=0;//纯虚函数求面积，无返回值
+};
+class Rect:public Shape{
+	public:
+		Rect(float a=1,float b=1): Shape(a,b){  }
+		void area()//派生类中重新定义纯虚函数area
+		{  cout<<"Rect::area="<<x*y<<endl;  }	 
+};
+class Oval:public Shape{
+	public:
+		Oval(float a,float b):Shape(a,b){}  //类的构造函数，无默认值
+		void area()//派生类中重新定义纯虚函数area
+		{  cout<<"Oval::area="<<Pai*x*y<<endl;  }
+};
+int main()
+{
+	Shape  *ps;  //可以定义抽象类的指针，却不能生成对象
+	Rect r(2,3);  //矩形边长分别为2、3
+	Oval v(1,2);  //椭圆长短轴分别为1、2
+	ps=&r;  //基类(父)指针指向派生类(子)对象
+	ps->area();  //area是纯虚函数，因此，基类指针指谁就调谁的成员函数
+	v.area();	
+}
