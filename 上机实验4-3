@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+class BaseA{
+	private:
+		int x;
+	public:
+		BaseA(int a)
+		{  	x=a;
+			cout<<"BaseA"<<endl;
+		}
+		void show()
+		{  cout<<"A::x="<<x<<endl;  }
+		~BaseA(){  cout<<"~BaseA"<<endl;  }
+};
+class BaseB{
+	private:
+		int x;
+	protected:
+		int y;
+	public:
+		BaseB(int a,int b)
+		{	
+			x=a;  y=b;
+			cout<<"BaseB"<<endl;
+		}
+		int getX(){  return x;  }
+		int getY(){  return y;  }
+		void show() //B::(x=?,y=?)
+		{  cout<<"B::(x="<<x<<",y="<<y<<")"<<endl;  }
+		~BaseB(){  cout<<"~BaseB"<<endl;  }
+};
+class C:private BaseA,public BaseB
+{
+	private:
+		int z;
+	public:
+		C(int a,int b,int c,int d):BaseB(a,b),BaseA(c)
+		{  z=d;  }
+		void show()
+		{  cout<<"C::(x="<<BaseB::getX()<<",y="<<y<<",z="<<z<<")"<<endl;  }
+		~C(){  cout<<"~C"<<endl;  }
+	};
+int main()
+{
+	int a=1;
+	C objc(a++,a++,a++,a);//先有父后有子，依次调用BaseA-BaseB-C的构造函数
+	objc.show();
+	//objc.A::show();
+	objc.BaseB::show();
+}
