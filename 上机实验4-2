@@ -1,0 +1,69 @@
+#include <iostream>
+using namespace std;
+class Controler;
+class AC {
+private:
+	bool OnOff;
+	int Mode;
+	int Temp;
+public:
+	AC(bool b = false, int m = 0, int t = 16)
+	{
+		OnOff = b;
+		Mode = m;
+		if(Temp < 16 or Temp>30)
+			Temp = 16;
+		else
+			Temp = t;//如果t是无效温度值则Temp=16，否则，Temp=t
+	}
+	friend Controler;
+	friend void Display(AC&);
+	friend string fMode(AC&);
+};
+class Controler {
+public:
+	void setOnOff(AC& ac) { ac.OnOff = !ac.OnOff; }
+	void AddTemp(AC& ac)
+	{  //现有温度+1℃，最高30℃。
+		if (ac.Temp < 30) ac.Temp++;
+	}
+	void ChangeMode(AC& ac)
+	{  //空调模式按题中给定值的顺序依次切换
+		ac.Mode = (ac.Mode + 1) % 5;
+	}
+	void DecTemp(AC& ac)
+	{  //如果温度>16℃，则降低1℃。
+		if (ac.Temp > 16) ac.Temp--;
+	}
+};
+//实现fMode函数的功能：根据空调的模式，返回对应的两个汉字，具体如下：
+//0-自动，1-制冷，2-除湿，3-送风，4-睡眠，5-制热
+string fMode(AC& obj)
+{
+	if (obj.Mode == 0) return "自动";
+	else if (obj.Mode == 1) return "制冷";
+	else if (obj.Mode == 2) return "除湿";
+	else if (obj.Mode == 3) return "送风";
+	else if (obj.Mode == 4) return "睡眠";
+	else if (obj.Mode == 5) return "制热";
+}
+void Display(AC& obj)
+{
+	if (obj.OnOff == 1) cout << "状态：运行" << endl;
+	else if (obj.OnOff == 0) cout << "状态：关闭" << endl;
+
+	cout << "模式：" << fMode(obj) << endl;
+	
+	cout << "温度：" << obj.Temp << endl;   //根据右图，实现Display函数的功能
+}
+
+int main()
+{
+	AC ac(false, 26);
+	Controler c;
+	c.setOnOff(ac);
+	c.AddTemp(ac);
+	c.ChangeMode(ac);
+	Display(ac);
+	return 0;
+}
