@@ -1,0 +1,63 @@
+#include <iostream>
+using namespace std;
+class Date{
+    protected:
+        int Year,Month,Day;
+    public:
+        Date(int y=0,int m=0,int d=0)
+        {  Year=y;  Month=m;  Day=d;  }
+        void show()
+        {  //自编代码,输出格式示例：2000-5-1
+   cout<<Year<<"-"<<Month<<"-"<<Day<<endl;
+        }
+};
+class Time{
+    protected:
+        int Hour,Minute,Second;
+    public:
+        Time(int h=0,int m=0,int s=0)
+        {  Hour=h;  Minute=m;  Second=s;  }
+        virtual  void show() //虚函数
+        {  //自编代码,输出格式示例：23:10:20
+   cout<<Hour<<":"<<Minute<<":"<<Second;
+        }      
+};
+//根据题目要求设计并实现类Birthday
+class Birthday:public Date,public Time{
+    //自编代码 
+    private:
+  string Name; 
+    public:
+        Birthday(int a,int b,int c,int d,int e,int f)                     
+        {                               
+         Year=a;
+         Month=b;
+         Day=c;
+         Hour=d;
+         Minute=e;
+         Second=f;
+        }
+        void setName(string name)
+        {getline(cin,name);Name=name;}
+  string getName()
+        {return Name;}
+        void show()
+        { //自编多行代码实现，输出格式见运行结果
+         cout<<Name<<"出生于"<<Year<<"年"<<Month<<"月"<<Day<<"日"<<" "<<Hour<<";"<<Minute<<":"<<Second<<endl;
+        }
+};
+int main()
+{
+    Birthday b(2000,5,1,23,10,20);
+    Date *pd;
+    Time *pt;
+    string s;
+    cout<<"Name:";
+    b.setName(s);                     //输入姓名
+    b.getName();                        //设置b的姓名      
+    b.show();                        //输出b的信息，输出格式见图
+    pd=&b; //基类(父)指针-->派生类(子)
+    pd->show();//非虚函数，按指针类型调用类的成员函数
+    pt=&b;//基类(父)指针-->派生类(子)
+    pt->show();//虚函数，指谁就调用谁的成员函数
+}
