@@ -1,0 +1,47 @@
+#include <iostream>
+#include <iomanip>  //控制输出格式用的头文件
+using namespace std;
+class Complex {
+private:
+	float real, imag;//复数的实部、虚部
+public:
+	Complex(float a = 0, float b = 0)
+	{
+		real = a;  imag = b;
+	}
+	//重载运算符+、-为友元函数，实现复数的加减运算，要求：类内声明，类外实现。
+	friend Complex operator+(Complex a, Complex b);
+	friend Complex operator-(Complex a, Complex b);
+	void show()//输出复数，格式示例：1+2i
+	{
+		cout << real << (imag>0?"+":"") <<imag<<"i" << endl;
+	}
+};
+Complex operator+(Complex a, Complex b)
+{
+	Complex c;
+	c.real = a.real + b.real;
+	c.imag = a.imag + b.imag;
+	return c;
+}
+Complex operator-(Complex a, Complex b)
+{
+	Complex c;
+	c.real = a.real - b.real;
+	c.imag = a.imag - b.imag;
+	return c;
+}
+
+
+int main()
+{
+	Complex a(1, 2), b(3), c;
+	c = a + b;//隐式调用
+	c.show();
+	//改写c=b+a; 用显式调用表示
+	c = operator+(b, a);
+	c.show();
+	//改写c=b-a; 用显式调用表示
+	c = operator-(b, a);
+	c.show();
+}
