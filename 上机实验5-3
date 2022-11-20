@@ -1,0 +1,59 @@
+#include <iostream>
+#include <iomanip>
+#include<math.h>  
+using namespace std;
+class Point{
+	private:
+		float x,y;
+	public:
+		Point(float a=0,float b=0)
+		{  x=a;  y=b;  }
+		void show()
+		{
+			cout<<"("<<x<<","<<y<<")"<<endl;//输出格式示例：(x,y)
+		}
+		void operator++()
+		{x++;y++;}//（1）重载运算符++为前缀成员函数，实现横/纵坐标值加1；
+		void operator++(int )
+		{x=x*2;y=y*2;}//（2）重载运算符++为后缀成员函数，实现横/纵坐标值各自乘2；
+		friend Point operator--(Point &obj);
+		friend Point operator--(Point &obj,int);
+		friend float  operator*(Point a,Point b);
+};
+Point operator--(Point &obj)
+{obj.x--;obj.y--;return obj;}//（3）重载运算符--为前缀友元函数，实现横/纵坐标值减1；
+Point operator--(Point &obj,int)
+{obj.x=obj.x/2;obj.y=obj.y/2;return obj;}//（4）重载运算符--为后缀友元函数，实现横/纵坐标值各自除以2；
+float  operator*(Point a,Point b)
+		{
+			float c;
+			c=sqrt((a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y));
+			return c;
+		}//（5）重载运算符*为友元函数，求给定两点间的距离，返回值为float类型。	
+int main()
+{
+	Point a(10,20),b(30,40);
+	float c;
+	Point t;
+	a++; 
+	a.show();
+	a.operator++(0);
+	a.show();
+	++a;
+	a.show();
+	a.operator++();
+	t=b;
+	b=a;
+	b.show();
+	b=t;
+	b--;
+	b.show();
+	operator--(b,0);	
+	b.show();
+	--b;  
+	b.show();
+	operator--(b);
+	b.show();
+	c=a*b;
+	cout<<"点a、b之间的距离是:"<<setprecision(4)<<c<<endl;
+}
