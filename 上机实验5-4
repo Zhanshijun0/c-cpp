@@ -1,0 +1,49 @@
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<string.h>
+using namespace std;
+int main()
+{
+	fstream fp,fp2;
+	string a,b,x;
+	int c;
+	char d[1024];
+	fp.open("d:\\vc\\a.txt",ios::in|ios::out|ios::trunc);
+	if(!fp)
+	{
+		cout<<"打开失败"<<endl; 
+		return 1;
+	}
+	fp2.open("d:\\vc\\b.txt",ios::in|ios::out);
+	cin.unsetf(ios::skipws); 
+	if(!fp2)
+	{
+		cout<<"打开失败"<<endl; 
+		return 1;
+	}
+	getline(cin,a);
+	fp<<a;
+	c=strlen(a.c_str());
+	strcpy(d,a.c_str());
+	for( int j=0;j<=c;j++)
+	{
+		if(d[j]>=65&&d[j]<=90)
+		{
+			d[j]=d[j]+32;
+		}
+		else if(d[j]>=97&&d[j]<=122)
+		{
+			d[j]=d[j]-32;
+		}
+	}
+	fp2.seekp(0L,ios::end);
+	fp2<<d;
+	fp2.seekp(ios::beg);
+	while(getline(fp2,x))
+	{
+		cout<<x<<endl;
+	}
+	fp.close();
+	fp2.close();
+} 
